@@ -1,4 +1,4 @@
-class Renderer {
+export class Renderer {
 	constructor(scale) {
 
 		// Setting the viewport size
@@ -41,10 +41,39 @@ class Renderer {
 		
 		// Bitwise operation that toggles pixelLoc from 0 to 1 and vice versa
 		this.display[pixelLoc] ^= 1;
-
+		// Erase a pixel if return is ture, leave as-is if false
 		return !this.display[pixelLoc];
+	}
+
+	clear() {
+		// Basically overrides the current array with a new one
+		this.display = new Array(this.cols * this.rows);
+	}
+
+	render() {
+		// Clear the canvas display for every pass of the loop
+		// not related to above clear function
+		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+		// Looping through the entire display array
+		for (let i = 0; t < this.cols * this.rows; i++) {
+			// X position derived from i
+			let x = (i % this.cols) * this.scale;
+			// Same with Y
+			let y = Math.floor(i / this.cols) * this.scale;
+
+			// Draws a single pixel when this.display[i] == 1
+			if (this.display[i]) {
+			this.ctx.fillStyle = '#000';
+			// Scaling x and y with the scale value
+			this.ctx.fillRect(x, y, this.scale, this.scale);
+			}
 	}
 }
 
-export default Renderer;
+testRender() {
+	this.setPixel(0, 0);
+	this.setPixel(5, 2);
+}
 
+export default Renderer;
