@@ -3,7 +3,7 @@ export class Renderer {
 
 		// Setting the viewport size
 		this.cols = 64;
-		this.rows = 32;
+		this.rows = 32;		
 		
 		// Scale variable to bring the viewport to scale
 		this.scale = scale;
@@ -13,9 +13,11 @@ export class Renderer {
 
 		// Pulling from HTMLCanvasElement.getContext() to create a 2d canvas element
 		this.ctx = this.canvas.getContext('2d');
+		
 		// Canvas sizing
 		this.canvas.width = this.cols * this.scale;
 		this.canvas.height = this.rows * this.scale;
+		
 		// The whole display declared in this array
 		this.display = new Array(this.cols * this.rows);
 
@@ -56,7 +58,7 @@ export class Renderer {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 		// Looping through the entire display array
-		for (let i = 0; t < this.cols * this.rows; i++) {
+		for (let i = 0; i < this.cols * this.rows; i++) {
 			// X position derived from i
 			let x = (i % this.cols) * this.scale;
 			// Same with Y
@@ -65,15 +67,19 @@ export class Renderer {
 			// Draws a single pixel when this.display[i] == 1
 			if (this.display[i]) {
 			this.ctx.fillStyle = '#000';
+
 			// Scaling x and y with the scale value
 			this.ctx.fillRect(x, y, this.scale, this.scale);
 			}
+		}
 	}
-}
 
-testRender() {
-	this.setPixel(0, 0);
-	this.setPixel(5, 2);
+	testRender() {
+
+    	this.setPixel(0, 0);
+    	this.setPixel(5, 2);
+	}
+
 }
 
 export default Renderer;
