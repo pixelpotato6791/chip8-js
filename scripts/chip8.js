@@ -13,8 +13,8 @@ function init() {
 	startTime = then;
 
 	// Test code
-	renderer.testRender();
-	renderer.render();
+	//renderer.testRender();
+	//renderer.render();
 
 	loop = requestAnimationFrame(step);
 }
